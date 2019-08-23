@@ -1,0 +1,51 @@
+class CarritoDeLaCompra:
+    
+    #Inicializo mis variables.
+    # Crear un diccionario para manejar mi lista de la compra
+    
+    lista_carrito = {}
+    nueva_cantidad = 0
+    suma_cant = 0
+    
+    def anadir_producto(self, nombre_prod, cantidad_prod):
+        self.nombre = nombre_prod
+        self.cantidad = cantidad_prod   
+        
+        
+        #Si el producto ya existe solo sumo sus cantidades
+        
+        if nombre_prod in self.lista_carrito:
+            suma_cant = self.lista_carrito.get(nombre_prod) + cantidad_prod
+            self.lista_carrito[nombre_prod] = suma_cant
+        
+        #Si no existe lo incorporo como nuevo
+        else:
+        
+            self.lista_carrito[nombre_prod] = cantidad_prod
+            
+            #esta impresion es para chequear que funciona
+            print(self.lista_carrito)
+        
+    def quitar_producto(self, nombre_prod, cantidad_prod):
+        self.nombreq = nombre_prod
+        self.cantidadq = cantidad_prod
+        
+        #Solo hago algo si mi producto esta en mi diccionario
+        
+        if nombre_prod in self.lista_carrito:
+            
+            #Si mi cantidad es igual a lo que tengo que quitar lo elimino            
+            if (self.lista_carrito.get(nombre_prod) == cantidad_prod):
+                del self.lista_carrito[nombre_prod]
+            #Si mi cantidad es menor que la que me piden eliminar, imprime error   
+            elif(self.lista_carrito.get(nombre_prod) < cantidad_prod):
+                print("Error")
+            #Si mi cantidad es menor, la descuento a la actual
+            else:
+                nueva_cantidad = self.lista_carrito.get(nombre_prod) - cantidad_prod 
+                self.lista_carrito.update({nombre_prod:nueva_cantidad})
+                nueva_cantidad = 0
+        
+    def ver_carrito(self):
+        print (self.lista_carrito)
+        
